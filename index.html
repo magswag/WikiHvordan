@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tittel</title>
+        <style>
+            body {
+                background: #e0e0e0;
+                margin: 0px;
+            }
+        .card {
+            overflow: hidden;
+            margin: 8px;
+            padding: 16px;
+            border-radius: 20px;
+         background: white;
+        }
+        .card img {
+            width: 100%;
+
+        }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    </head>
+    <body>
+    <div class="card"></div>
+    </body>
+    <script>
+    $(function() {
+       $.getJSON("https://raw.githubusercontent.com/magswag/WikiHvordan/master/hvordaner.json", function(data) {
+         $(".card").html(data[0].content)
+       });
+    });
+    </script>
+</html>
