@@ -2,10 +2,13 @@
 <html>
     <head>
         <title>Tittel</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
+            @import url('https://fonts.googleapis.com/css?family=Cabin&display=swap');
             body {
                 background: #e0e0e0;
                 margin: 0px;
+                font-family: "Cabin";
             }
         .card {
             overflow: hidden;
@@ -18,13 +21,15 @@
         }
 
         .card .headerImg {
+            object-fit: cover;
             width: 100%;
+            height: 300px;
         }
         .card .content {
             padding: 16px;
         }
         .card h1 {
-            margin: 0px;
+            margin: 8px 0px 8px 0px;
         }
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -39,7 +44,7 @@
     $(function() {
        $.getJSON("https://raw.githubusercontent.com/magswag/WikiHvordan/master/hvordaner.json", function(data) {
          $(".content").html(data[0].content);
-         $(".headerImg").attr("src", data[0].cover-image);
+         $(".headerImg").attr("src", data[0].coverimage);
        });
     });
     </script>
