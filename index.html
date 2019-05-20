@@ -1,57 +1,124 @@
+   
+
 <!DOCTYPE html>
+
 <html>
+
     <head>
+
         <title>Tittel</title>
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <style>
+
             @import url('https://fonts.googleapis.com/css?family=Cabin&display=swap');
 
+
+
             @media only screen and (min-width: 768px) {
+
             
+
             }
+
             body {
+
                 background: #e0e0e0;
+
                 margin: 0px;
+
                 font-family: "Cabin";
+
             }
+
         .card {
+
             margin: 8px;
+
             overflow: hidden;
+
             border-radius: 20px;
+
          background: white;
-        }
-        .card img {
-            width: 100%;
-            margin: 8px 0px 8px 0px;
+
         }
 
-        .card .headerImg {
-            margin:0px;
-            object-fit: cover;
+        .card img {
+
             width: 100%;
-            height: 300px;
-        }
-        .card .content {
-            padding: 0px 16px 0px 16px;
-        }
-        .card h1 {
+
             margin: 8px 0px 8px 0px;
+
         }
+
+
+
+        .card .headerImg {
+
+            margin:0px;
+
+            object-fit: cover;
+
+            width: 100%;
+
+            height: 300px;
+
+        }
+
+        .card .content {
+
+            padding: 0px 16px 0px 16px;
+
+        }
+
+        .card h1 {
+
+            margin: 8px 0px 8px 0px;
+
+        }
+
         </style>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
     </head>
+
     <body>
+
     <div class="card">
+
 <img class="headerImg">
+
         <div class="content"></div>
+
     </div>
+
     </body>
+
     <script>
+
+        var urlParameters;
+
     $(function() {
+        urlParameters = new URLSearchParams(window.location.search);
+
        $.getJSON("https://raw.githubusercontent.com/magswag/WikiHvordan/master/hvordaner.json", function(data) {
-         $(".content").html(data[0].content);
-         $(".headerImg").attr("src", data[0].coverimage);
+
+       var currentArticle = data.articles.filter(function(foo) {
+        return foo.title == urlParameters.get("article");
+       }); 
+
+       if(currentArticle.length == 0) {
+         alert("Not found");
+    } else {
+          $(".content").html(currentArticle[0].content);
+          $(".headerImg").attr("src", currentArticle[0].coverimage);
+    }
        });
+
     });
+
     </script>
+
 </html>
