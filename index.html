@@ -38,7 +38,7 @@
 
             overflow: hidden;
 
-            border-radius: 20px;
+            border-radius: 24px;
 
          background: white;
 
@@ -57,11 +57,8 @@
         .card .headerImg {
 
             margin:0px;
-
             object-fit: cover;
-
             width: 100%;
-
             height: 300px;
 
         }
@@ -78,6 +75,10 @@
 
         }
 
+        .card .title {
+            font-size: 36px;
+        }
+
         </style>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -86,14 +87,7 @@
 
     <body>
 
-    <div class="card">
-
-<img class="headerImg">
-
-        <div class="content"></div>
-
-    </div>
-
+    
     </body>
 
     <script>
@@ -110,14 +104,32 @@
        }); 
 
        if(currentArticle.length == 0) {
-         alert("Not found");
+         show404();
     } else {
-          $(".content").html(currentArticle[0].content);
-          $(".headerImg").attr("src", currentArticle[0].coverimage);
+          createArticle(currentArticle[0]);
     }
        });
 
     });
+
+    function show404() {
+        var errorText = $("<h1></h1>").html("404 not found");
+     $("body").append(errorText);
+    }
+
+    function createArticle(articleData) {
+     var articleCard = $("<div class='card'></div>");
+     var articleHeaderImage = $("<img class='headerImg'>");
+     var articleCardContent = $("<div class='content'></div>");
+     var articleTitle = $("<h1 class='title'></h1>").html(articleData.title);
+
+     articleCardContent.append(articleTitle).append(articleData.content);
+     articleHeaderImage.attr("src", articleData.coverimage);
+
+     articleCard.append(articleHeaderImage, articleCardContent);
+
+     $("body").append(articleCard);
+    }
 
     </script>
 
